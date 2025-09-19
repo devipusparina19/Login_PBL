@@ -18,5 +18,7 @@
 
         <button type="submit">Register</button>
     </form>
+
+    <p>Sudah punya akun? <a href="{{ route('user.showLogin') }}">Login di sini</a></p>
 </body>
 </html>
