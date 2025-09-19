@@ -1,21 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Form Login</h2>
-    <form action="{{ route('user.login') }}" method="POST">
-        @csrf
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+@extends('layout')
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+@section('content')
+<div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-4">
+        <h3 class="text-center mb-4">Login</h3>
 
-        <button type="submit">Login</button>
-    </form>
+        {{-- Pesan error --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <p>Belum punya akun? <a href="{{ route('user.showRegister') }}">Register</a></p>
-</body>
-</html>
+        <form action="{{ route('user.login') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Login</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Belum punya akun? <a href="{{ route('user.showRegister') }}">Daftar sekarang</a>
+        </p>
+    </div>
+</div>
+@endsection
