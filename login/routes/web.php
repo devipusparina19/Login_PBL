@@ -1,7 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', [UserController::class, 'showRegister'])->name('user.showRegister');
+Route::post('/register', [UserController::class, 'register'])->name('user.register');
+Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
+
+// Login
+Route::get('/login', [LoginController::class, 'showLogin'])->name('user.showLogin');
+Route::post('/login', [LoginController::class, 'login'])->name('user.login');
+
+// Home setelah login
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
