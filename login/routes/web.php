@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 
+Route::get('/', function () {
+    return redirect()->route('user.showLogin');
+});
+
 Route::get('/register', [UserController::class, 'showRegister'])->name('user.showRegister');
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
